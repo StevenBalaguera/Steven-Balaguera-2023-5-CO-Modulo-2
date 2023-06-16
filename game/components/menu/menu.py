@@ -5,13 +5,12 @@ from game.utils.constants import FONT_STYLE, SCREEN_WIDTH, SCREEN_HEIGHT
 class Menu:
     HALF_SCREEN_WIDTH = SCREEN_WIDTH // 2
     HALF_SCREEN_HEIGHT = SCREEN_HEIGHT // 2
-
-    def __init__(self, message, screen):
+    def __init__(self, message, screen, screen_width, screen_height):
         screen.fill((0, 25, 51))
         self.font = pygame.font.Font(FONT_STYLE, 30)
         self.text = self.font.render(message, True, (0, 0, 0))
         self.text_rect = self.text.get_rect()
-        self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
+        self.text_rect.center = (screen_width, screen_height)
 
     def update(self, game):
         pygame.display.update()
@@ -32,9 +31,9 @@ class Menu:
     def reset(self, screen):
         screen.fill((0, 25, 51))
 
-    def update_message(self, message):
+    def update_message(self, message, screen_width, screen_height):
         self.text = self.font.render(message, True, (0, 0, 0))
         self.text_rect = self.text.get_rect()
-        self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
+        self.text_rect.center = (screen_width, screen_height)
 
         

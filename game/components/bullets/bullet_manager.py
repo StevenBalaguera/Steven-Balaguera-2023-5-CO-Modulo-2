@@ -23,10 +23,12 @@ class BulletManager:
         for bullet in self.bullets:
             bullet.update(self.bullets)
             for enemy in game.enemy_manager.enemies:
-                if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
-                    game.enemy_manager.enemies.remove(enemy)
-                    self.bullets.remove(bullet)
-                    game.menu_score.update_score()
+                for bullet_enemy in self.enemy_bullets:
+                    if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
+                        game.enemy_manager.enemies.remove(enemy)
+                        self.enemy_bullets.remove(bullet_enemy)
+                        self.bullets.remove(bullet)
+                        game.menu_score.update_score()
 
     def draw(self, screen):
         for bullet in self.enemy_bullets:
