@@ -9,19 +9,24 @@ class BulletManager:
         print(len(self.bullets))
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)
+            for enemy in game.enemy_manager.enemies:
+                if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy':
+                    self.enemy_bullets.remove(bullet)
+                    game.menu_score.death_count += 1
+                    game.enemy_manager.enemies.remove(enemy)
+                    game.playing = False
+                    pygame.time.delay(1000)
+                    break
 
-            if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy':
-                self.enemy_bullets.remove(bullet)
-                game.playing = False
-                pygame.time.delay(1000)
+                
 
         for bullet in self.bullets:
             bullet.update(self.bullets)
-
-            if bullet.rect.colliderect(game.enemy.rect):
-                self.enemy_bullets.remove(bullet)
-                self.bullets.remove(bullet)
-                print("hoddihoe")
+            for enemy in game.enemy_manager.enemies:
+                if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
+                    game.enemy_manager.enemies.remove(enemy)
+                    self.bullets.remove(bullet)
+                    game.menu_score.update_score()
 
     def draw(self, screen):
         for bullet in self.enemy_bullets:

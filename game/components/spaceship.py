@@ -32,7 +32,6 @@ class Spaceship(Sprite):
             self.move_down()
         elif user_input[pygame.K_SPACE]:
             self.shoot_player(game)
-            
 
     def move_left(self):
         self.rect.x -= 10
