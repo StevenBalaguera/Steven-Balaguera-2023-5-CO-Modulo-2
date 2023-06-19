@@ -1,13 +1,14 @@
 import pygame
 
 from pygame.sprite import Sprite
-from game.utils.constants import BULLET, BULLET_ENEMY, SCREEN_HEIGHT
+from game.utils.constants import BULLET, BULLET_ENEMY, SCREEN_HEIGHT, INFINITE_BULLET
 
 
 class Bullet(Sprite):
   BULLET_SIZE = pygame.transform.scale(BULLET, (10, 20))
   BULLET_SIZE_ENEMY = pygame.transform.scale(BULLET_ENEMY, (9, 32))
-  BULLETS = { 'player': BULLET_SIZE, 'enemy': BULLET_SIZE_ENEMY }
+  INFINITE_BULLET_SIZE = pygame.transform.scale(INFINITE_BULLET, (10, 20))
+  BULLETS = { 'player': BULLET_SIZE, 'enemy': BULLET_SIZE_ENEMY, 'player_update': INFINITE_BULLET_SIZE }
   SPEED = 20
 
   def __init__(self, spaceship):
@@ -17,8 +18,9 @@ class Bullet(Sprite):
     self.owner = spaceship.type
     
   def update(self, bullets):
-    if self.owner == 'player':
+    if self.owner == 'player' or self.owner == 'player_update':
       self.rect.y -= self.SPEED
+      
     else:
       self.rect.y += self.SPEED
     

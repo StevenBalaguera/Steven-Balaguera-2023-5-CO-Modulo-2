@@ -109,7 +109,7 @@ class Game:
         self.bullet_manager.reset()
         self.enemy_manager.reset()
         self.score.reset()
-        self.player.reset()
+        self.player.reset(self)
         self.power_up_manager.reset()
 
     def draw_power_up_time(self):
@@ -120,6 +120,4 @@ class Game:
                 self.menu.draw(self.screen, f'{self.player.power_up_type.capitalize()} is enabled for {time_to_show}', 540, 50, (255, 255, 255))
 
             else:
-                self.player.has_power_up = False
-                self.player.power_up_type = DEFAULT_TYPE
-                self.player.set_image()
+                self.player.reset(self)

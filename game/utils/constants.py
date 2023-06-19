@@ -1,3 +1,4 @@
+
 import pygame
 import os
 
@@ -7,6 +8,8 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+MUSIC_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
@@ -27,5 +30,13 @@ BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
 ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
 ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
+ENEMY_3 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/ENEMY_3.png"))
+
+INFINITE_BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_3.png"))
+BULLET_TYPE = 'bullet'
+GIFT = pygame.image.load(os.path.join(IMG_DIR, "Bullet/regalo_power.png"))
+
+SPACESHIP_UPDATE = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_power_up.png"))
+
 
 FONT_STYLE = 'freesansbold.ttf'

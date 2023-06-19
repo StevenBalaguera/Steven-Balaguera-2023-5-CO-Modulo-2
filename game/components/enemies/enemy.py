@@ -3,23 +3,23 @@ import random
 
 from pygame.sprite import Sprite
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import ENEMY_1, ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import ENEMY_1, ENEMY_2, ENEMY_3, SCREEN_HEIGHT, SCREEN_WIDTH
 
 
 class Enemy(Sprite):
   ENEMY_WIDTH = 40
   ENEMY_HEIGHT = 60
-  X_POS_LIST = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
+  X_POS_LIST = list(range(50, 1100, 50))
   Y_POS = 20
   SPEED_X = 5
   SPEED_Y = 1
   MOV_X = { 0: 'left', 1: 'right' }
-  IMAGE = { 1: ENEMY_1, 2: ENEMY_2 }
+  IMAGE = { 1: ENEMY_1, 2: ENEMY_2, 3: ENEMY_3 }
 
   def __init__(self, image = 1, speed_x = SPEED_X, speed_y = SPEED_Y, move_x_for = [30, 100]):
     self.image = pygame.transform.scale(self.IMAGE[image], (self.ENEMY_WIDTH, self.ENEMY_HEIGHT))
     self.rect = self.image.get_rect()
-    self.rect.x = self.X_POS_LIST[random.randint(0, 10)]
+    self.rect.x = self.X_POS_LIST[random.randint(0, 20)]
     self.rect.y = self.Y_POS
     self.speed_x = speed_x
     self.speed_y = speed_y
