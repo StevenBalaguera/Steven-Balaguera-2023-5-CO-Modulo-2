@@ -37,6 +37,6 @@ BULLET_TYPE = 'bullet'
 GIFT = pygame.image.load(os.path.join(IMG_DIR, "Bullet/regalo_power.png"))
 
 SPACESHIP_UPDATE = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_power_up.png"))
-
+MENU_IMAGE = pygame.image.load(os.path.join(IMG_DIR, "Other/imagen_menu.png"))
 
 FONT_STYLE = 'freesansbold.ttf'
