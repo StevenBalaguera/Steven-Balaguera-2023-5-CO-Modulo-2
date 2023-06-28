@@ -1,13 +1,14 @@
 import pygame
 
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, SPACESHIP_MENU, SPACESHIP_MENU_2
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.bullets.bullet_manager import BulletManager
 from game.components.menu.menu import Menu
 from game.components.bullets.counter import Counter
 from game.components.power_ups.power_up_manager import PowerUpManager
-
+from game.components.explotions.explotions import Explotion
+from game.components.explotions.Animation_menu import Animation
 
 class Game:
     def __init__(self):
@@ -29,6 +30,9 @@ class Game:
         self.death_count = Counter()
         self.highest_score = Counter()
         self.power_up_manager = PowerUpManager()
+        self.explotion = Explotion()
+        self.animation = Animation(SPACESHIP_MENU, 100)
+        self.animation_2 = Animation(SPACESHIP_MENU_2, 850)
         
     def execute(self):
         self.running = True
@@ -98,7 +102,11 @@ class Game:
         
         icon = pygame.transform.scale(ICON, (80, 120))
         self.screen.blit(icon, (half_screen_width - 50, half_screen_height - 150))
-        
+        self.explotion.update(self.screen)
+        self.animation.draw_image(self.screen)
+        self.animation_2.draw_image(self.screen)
+        self.animation.move()   
+        self.animation_2.move() 
         self.menu.update(self)
         
     def update_highest_score(self):

@@ -39,4 +39,9 @@ GIFT = pygame.image.load(os.path.join(IMG_DIR, "Bullet/regalo_power.png"))
 SPACESHIP_UPDATE = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_power_up.png"))
 MENU_IMAGE = pygame.image.load(os.path.join(IMG_DIR, "Other/imagen_menu.png"))
 
+SPACESHIP_MENU = pygame.image.load(os.path.join(IMG_DIR, "Animation_menu/spaceship_menu.png"))
+SPACESHIP_MENU_2 = pygame.image.load(os.path.join(IMG_DIR, "Animation_menu/spaceship_menu2.png"))
+IMAGE_LIST = []
+for image in range(1, 11):
+    IMAGE_LIST.append(pygame.image.load(os.path.join(IMG_DIR, f"explotion/explotion_{image}.png")))
 FONT_STYLE = 'freesansbold.ttf'
