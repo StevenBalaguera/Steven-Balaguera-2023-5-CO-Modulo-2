@@ -16,7 +16,7 @@ class PowerUpManager:
     def __init__(self):
         self.power_ups = []
         self.when_appears = random.randint(self.MIN_TIME_POWER_UP, self.MAX_TIME_POWER_UP)
-        self.duration = random.randint(3, 5)
+        self.duration = random.randint(5, 7)
 
     def generate_effect(self):
         level_up_effect = pygame.mixer.Sound(os.path.join(MUSIC_DIR, "Music/hp-level-up-mario.mp3"))
@@ -44,25 +44,23 @@ class PowerUpManager:
 
         for power_up in self.power_ups:
             power_up.update(game.game_speed, self.power_ups)
+            if game.player.rect.colliderect(power_up):
+                power_up.start_time = pygame.time.get_ticks()
+                game.player.power_up_type = power_up.type
+                game.player.has_power_up = True
+                game.player.power_time_up = power_up.start_time + (self.duration * 1000)
+                self.generate_effect()
+
+
             if self.type_power == 0:
                 if game.player.rect.colliderect(power_up):
-                    power_up.start_time = pygame.time.get_ticks()
-                    game.player.power_up_type = power_up.type
-                    game.player.has_power_up = True
-                    game.player.power_time_up = power_up.start_time + (self.duration * 1000)
+                    game.player.type = "player"
                     game.player.set_image((65, 75), SPACESHIP_SHIELD)
-                    self.generate_effect()
                     self.power_ups.remove(power_up)                
-
             elif self.type_power == 1:
                 if game.player.rect.colliderect(power_up):
-                    power_up.start_time = pygame.time.get_ticks()
-                    game.player.power_up_type = power_up.type
-                    game.player.has_power_up = True
-                    game.player.power_time_up = power_up.start_time + (self.duration * 1000)
                     game.player.type = "player_update"
                     game.player.set_image((65, 75), SPACESHIP_UPDATE)
-                    self.generate_effect()
                     self.power_ups.remove(power_up)
                     
     def draw(self, screen):

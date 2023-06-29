@@ -15,7 +15,6 @@ class Animation(Sprite):
 
     def draw_image(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
-        pygame.time.delay(100)
 
     def move(self):
         self.rect.y -= 10

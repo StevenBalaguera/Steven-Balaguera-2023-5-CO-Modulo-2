@@ -1,6 +1,7 @@
 import pygame
+import os
 
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, SPACESHIP_MENU, SPACESHIP_MENU_2
+from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, SPACESHIP_MENU, SPACESHIP_MENU_2, MUSIC_DIR
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.bullets.bullet_manager import BulletManager
@@ -33,7 +34,14 @@ class Game:
         self.explotion = Explotion()
         self.animation = Animation(SPACESHIP_MENU, 100)
         self.animation_2 = Animation(SPACESHIP_MENU_2, 850)
+
+    def loop_song(self):
+        menu_music = pygame.mixer.Sound(os.path.join(MUSIC_DIR, "Music/rains.mp3"))
+        canal_1 = pygame.mixer.Channel(1)
+        canal_1.play(menu_music)
+        canal_1.set_volume(0.15)
         
+
     def execute(self):
         self.running = True
         while self.running:
@@ -90,7 +98,6 @@ class Game:
         self.menu.reset(self.screen)
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT // 2
-        
         if self.death_count.count == 0:
             self.menu.draw(self.screen, 'Press any key to start ...')
         else:

@@ -24,6 +24,7 @@ class Explotion(Sprite):
             self.rect = self.image.get_rect()
             screen.blit(self.image, (self.HALF_SCREEN_WIDTH - 150, self.HALF_SCREEN_HEIGHT - 180))
             screen.blit(self.image, (self.HALF_SCREEN_WIDTH + 60, self.HALF_SCREEN_HEIGHT - 180))
+            pygame.time.delay(100)
 
 
 

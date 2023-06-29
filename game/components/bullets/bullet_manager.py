@@ -37,11 +37,14 @@ class BulletManager:
       bullet.update(self.bullets)
 
       for enemy in game.enemy_manager.enemies:
-        if (bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player') or (bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player_update'):
-            game.enemy_manager.enemies.remove(enemy)
+        try:
+          if (bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player') or (bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player_update'):
             self.bullets.remove(bullet)
+            game.enemy_manager.enemies.remove(enemy)
             game.score.update()
             self.music_effect()
+        except ValueError:
+          game.enemy_manager.enemies.remove(enemy)
 
     for bullet in self.enemy_bullets:
       bullet.update(self.enemy_bullets)
